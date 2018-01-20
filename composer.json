@@ -4,6 +4,6 @@
     "require": {
         "php": "^7.0",
         "laravel/laravel": "5.5*",
-        "almasaeed2010/adminlte": "~2.4",
+        "almasaeed2010/adminlte": "~2.4"
     }
 }
