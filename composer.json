@@ -1,14 +1,4 @@
 {
-    "name": "pkeogan/laravel-adminlte",
-    "description": "A Package to Intergrate AdminLTE into Laravels 5.5 Blade Template System",
-    "require": {
-        "php": "^7.0",
-        "laravel/laravel": "5.5*",
-        "almasaeed2010/adminlte": "~2.4"
-    }
-}
-
-{
   "name": "pkeogan/laravel-adminlte",
   "description": "A Package to Intergrate AdminLTE into Laravels 5.5 Blade Template System",
   "keywords": [
