@@ -1,0 +1,7 @@
+@textlead(This is some text formated with Lead Text)
+@textgreen(This is some text formated with Green Text)
+@textaqua(This is some text formated with Aqua Text)
+@textlightblue(This is some text formated with Light Blue Text)
+@textred(This is some text formated with Red Text)
+@textyellow(This is some text formated with Yellow Text)
+@textmuted(This is some text formated with Muted Text)

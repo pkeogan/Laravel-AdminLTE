@@ -1,0 +1,31 @@
+{
+  "name": "pkeogan/laravel-adminlte",
+  "description": "A Package to Intergrate AdminLTE into Laravels 5.5 Blade Template System",
+  "keywords": [
+    "laravel",
+    "AdminLTE",
+    "Blade"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Peter Keogan",
+      "email": "peter@pkeogan.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "almasaeed2010/adminlte": "~2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pkeogan\\LaravelAdminLTE\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "master": "0.1-dev"
+    }
+  },
+  "minimum-stability": "dev"
+}
