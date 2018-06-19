@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="description" content="@yield('meta_description', 'Applcation Made By Peter Keogan')">
   <meta name="author" content="@yield('meta_author', 'Peter Keogan')">
+  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-   @includeIf(config('adminlte.favicons'))
-  
+  @includeif('vendor.laravel-favicon.favicon')
   @yield('meta')
-    <title>@yield('title', config('adminlte.title'))</title>
+  
+  <title>@yield('title', config('adminlte.title'))</title>
+  
   @stack('before-styles')
-  @stack('styles')
   <!-- Import Styles -->
+  @stack('styles')
   {{ style('css/style.css') }}
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -25,28 +25,44 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> 
-   @stack('after-styles')
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  @stack('after-styles')
      @stack('afterstyles')
 </head>
-<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-hems layout-top-nav">
+<!-- Site wrapper -->
+<div class="wrapper">
 
-<body class="hold-transition login-page">
-  <div class="login-box">
-  <div class="login-logo">
-    <a href="{{ route('frontend.index')}}"><b>Hennepin</b> EMS</a>
-  </div>
-  <!-- /.login-logo -->
-    @include('adminlte::messages')
-    @yield('content')
-      </div>
-  <!-- /.login-box-body -->
-  </br>
-      <p class="login-box-msg"> PLASMA <a href="{{ config('plasma.link') }}">Verison {{ config('plasma.verison')}} </a></p>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+		<div class="row">
+			<center><h1>
+				Hennepin EMS
+				</h1>
+				<h3>Account Setup</h3>
+			</center>
+		</div>
+      <h1>
+        @yield('page-title')
+		  
+        <small>@yield('page-subtitle')</small>
+      </h1>
+    </section>
+  <!-- Main content -->
+<section class="container">
+   @include('adminlte::messages')
+  @yield('content')
+
+   </section>
+  <!-- /.content -->
 </div>
-<!-- /.login-box -->
-    
- @stack('before-scripts')
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- ./wrapper -->
+  @stack('before-scripts')
     @stack('beforescripts')
  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -70,7 +86,7 @@
         @stack('scriptsdocumentready')
        });
   </script>
-  
+
 </body>
 
 </html>
