@@ -17,9 +17,7 @@
     */
 
 @endphp
-
-<div class="embed-responsive embed-responsive-16by9">			
-	<iframe  class="embed-responsive-item" src="{{ $url }}" scrolling="yes" width="100%" height="100%" frameborder="0" searchonce="False" >
+			
+	<iframe  src="{{ $url }}" scrolling="yes" width="@if(isset($width)){{$width}}@else 100% @endif" height="@if(isset($height)){{$height}}@else 100% @endif" frameborder="0" searchonce="False" >
 		Your browser does not support inline frames
 	</iframe>
-</div>
