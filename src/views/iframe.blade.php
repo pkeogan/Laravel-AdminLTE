@@ -17,7 +17,19 @@
     */
 
 @endphp
-			
+<style>
+	.scroll-wrapper {
+		-webkit-overflow-scrolling: touch;
+		overflow: scroll;
+		 border: 1px solid #cccccc;
+		/* important:  dimensions or positioning here! */
+	}
+
+</style>
+<div class="scroll-wrapper">
+	
 	<iframe  src="{{ $url }}" scrolling="yes" width="@if(isset($width)){{$width}}@else 100% @endif" height="@if(isset($height)){{$height}}@else 100% @endif" frameborder="0" searchonce="False" >
 		Your browser does not support inline frames
 	</iframe>
+	
+	</div>
