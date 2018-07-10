@@ -1,0 +1,1 @@
+<small class="label pull-right bg-{{ $color }}">{{ $text }}</small>

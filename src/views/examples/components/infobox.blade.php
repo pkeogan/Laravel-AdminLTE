@@ -1,0 +1,4 @@
+@col(3) {!! AdminLTE::widget()->infoBox()->number(20)->iconColor('green')->icon('fa fa-star-o')->title('Messages')->render() !!} @endcol
+@col(3) {!! AdminLTE::widget()->infoBox()->number(1534)->color('red')->percentage(50)->icon('fa fa-star')->title('Stars')->render() !!} @endcol
+@col(3) {!! AdminLTE::widget()->infoBox()->number(1534)->color('aqua')->percentage(85)->text('Amount Of Showers Taken')->icon('fa fa-shower')->title('Showers')->render() !!} @endcol
+@col(3) {!! AdminLTE::widget()->infoBox()->number(1534)->color('yellow')->icon('fa fa-bath')->title('Stars')->text('this is some text')->render() !!} @endcol
