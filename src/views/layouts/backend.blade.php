@@ -53,6 +53,7 @@
   <!-- Main content -->
 <section class="content">
    @include('adminlte::messages')
+<<<<<<< HEAD
 	
 	@if(env('GLOBAL_MESSAGE', 'false') != 'false')
 	  <div class="alert alert-warning ">
@@ -61,6 +62,8 @@
 	  </div>
 	@endif
               
+=======
+>>>>>>> 28b96548d2efd8f86e782f10195e95ffd070e0f7
   @yield('content')
 
    </section>
