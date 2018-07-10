@@ -53,17 +53,12 @@
   <!-- Main content -->
 <section class="content">
    @include('adminlte::messages')
-<<<<<<< HEAD
-	
-	@if(env('GLOBAL_MESSAGE', 'false') != 'false')
+		@if(env('GLOBAL_MESSAGE', 'false') != 'false')
 	  <div class="alert alert-warning ">
 		<h4><i class="icon fa fa-warning"></i> {{env('GLOBAL_MESSAGE_TITLE', 'Site Wide Message')}} </h4>
 		{{env('GLOBAL_MESSAGE', 'Message')}}
 	  </div>
 	@endif
-              
-=======
->>>>>>> 28b96548d2efd8f86e782f10195e95ffd070e0f7
   @yield('content')
 
    </section>
