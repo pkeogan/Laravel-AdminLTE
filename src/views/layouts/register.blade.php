@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   @stack('after-styles')
      @stack('afterstyles')
+		@include('adminlte::ga', ['code' => config('analytics.backend')])
 </head>
 <body class="hold-transition skin-hems layout-top-nav">
 <!-- Site wrapper -->

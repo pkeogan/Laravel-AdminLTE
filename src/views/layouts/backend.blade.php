@@ -29,6 +29,7 @@
   @stack('after-styles')
      @stack('afterstyles')
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/css/animsition.min.css" integrity="sha256-FAIOZJGGkyuIp/gVrVL/k52z4rpCKMrRlYMdGCWstUo=" crossorigin="anonymous" />
+	@include('adminlte::ga', ['code' => config('analytics.backend')])
 	</head>
 <body class="hold-transition skin-hems sidebar-mini">
 	
