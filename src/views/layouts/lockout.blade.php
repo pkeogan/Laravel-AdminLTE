@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="description" content="@yield('meta_description', 'Applcation Made By Peter Keogan')">
   <meta name="author" content="@yield('meta_author', 'Peter Keogan')">
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  @includeif('vendor.laravel-favicon.favicon')
+   @includeIf(config('adminlte.favicons'))
+  
   @yield('meta')
-  
-  <title>@yield('title', config('adminlte.title'))</title>
-  
+    <title>@yield('title', config('adminlte.title'))</title>
   @stack('before-styles')
-  <!-- Import Styles -->
   @stack('styles')
+  <!-- Import Styles -->
   {{ style('css/style.css') }}
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -25,47 +25,31 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> 
 		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-xyMU7RufUdPGVOZRrc2z2nRWVWBONzqa0NFctWglHmt5q5ukL22+lvHAqhqsIm3h" crossorigin="anonymous">
 
-  @stack('after-styles')
+   @stack('after-styles')
      @stack('afterstyles')
 		@include('adminlte::ga', ['code' => config('analytics.backend')])
 </head>
-<body class="hold-transition skin-hems layout-top-nav">
-<!-- Site wrapper -->
-<div class="wrapper">
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+	
+	<body class="hold-transition lockscreen">
+<!-- Automatic element centering -->
+<div class="lockscreen-wrapper">
+  <div class="lockscreen-logo">
+    <a href="{{ route('frontend.index')}}"><b>Hennepin</b> EMS</a>
+  </div>
+	@include('adminlte::messages')
+    @yield('content')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-		<div class="row">
-			<center><h1>
-				Hennepin EMS
-				</h1>
-				<h3>Account Setup</h3>
-			</center>
-		</div>
-      <h1>
-        @yield('page-title')
-		  
-        <small>@yield('page-subtitle')</small>
-      </h1>
-    </section>
-  <!-- Main content -->
-<section class="container">
-   @include('adminlte::messages')
-  @yield('content')
-
-   </section>
-  <!-- /.content -->
+  <div class="lockscreen-footer text-center">
+PLASMA <a href="{{ config('plasma.link') }}">Verison {{ config('plasma.verison')}} </a>
+  </div>
 </div>
-  <!-- /.content-wrapper -->
+<!-- /.center -->
 
-</div>
-<!-- ./wrapper -->
-  @stack('before-scripts')
+ @stack('before-scripts')
     @stack('beforescripts')
  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -89,7 +73,8 @@
         @stack('scriptsdocumentready')
        });
   </script>
-
+  
 </body>
 
 </html>
+

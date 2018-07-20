@@ -1,7 +1,7 @@
 <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
+              <i class="fal fa-bell"></i>
               <span class="label label-warning">{{ Auth::user()->unreadNotifications->count() }}</span>
             </a>
             <ul class="dropdown-menu">
@@ -20,7 +20,7 @@
                       </div>
                       <h4 style="margin: 0px 0px 0px 25px;">
                         {{ $note[0]->data['title'] }}
-                        <small><i class="fa fa-clock-o"></i> {{  \Carbon\Carbon::parse($note[0]->created_at)->diffForHumans() }} </span></button></small>
+                        <small><i class="fa fa-clock-o"></i> {{  \Carbon\Carbon::parse($note[0]->created_at)->diffForHumans() }}</small>
                           
 
                       </h4>
