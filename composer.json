@@ -15,7 +15,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "almasaeed2010/adminlte": "~2.4"
+    "almasaeed2010/adminlte": "2.4.8"
   },
   "autoload": {
     "psr-4": {
