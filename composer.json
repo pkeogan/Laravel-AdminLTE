@@ -13,10 +13,6 @@
       "email": "peter@pkeogan.com"
     }
   ],
-  "require": {
-    "php": ">=7.0",
-    "almasaeed2010/adminlte": "~2.4"
-  },
   "autoload": {
     "psr-4": {
       "Pkeogan\\LaravelAdminLTE\\": "src/"
