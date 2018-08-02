@@ -22,21 +22,21 @@
   <div class="btn-group">
     @foreach($buttons as $button)
         @can($button['permission'] )
-          @include('adminlte::button', $button)
+	      <a data-toggle="tooltip" title="{{$button['label']}}" class="btn {{$button['style']}}" href="{{$button['link']}}"> <i class="{{$button['icon']}}"></i> </a>
         @endcan
     @endforeach
   </div>
 </div>
 <div class="visible-xs-block">
   <div class="btn-group">
-    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
   @if(isset($submenuTitle)){{ $submenuTitle }}@else Tools @endif  <span class="caret"></span>
   <span class="sr-only">Toggle Dropdown</span>
   </button>
     <ul class="dropdown-menu" role="menu">
       @foreach($buttons as $button)
         @haspermission($button['permission'] )
-              <li @if(isset($button['uriPattern'])) class="@if(isset($button['uriPattern'])){{ active_class(Active::checkUriPattern($button['uriPattern'])) }}@endif" @endif >
+              <li>
                 <a href="{{$button['link']}}">{{$button['label']}}</a></li>
         @endhaspermission
       @endforeach
