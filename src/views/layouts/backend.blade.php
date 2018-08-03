@@ -90,20 +90,44 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" integrity="sha256-u7MY6EG5ass8JhTuxBek18r5YG6pllB9zLqE4vZyTn4=" crossorigin="anonymous"></script>
  
 	{{ script(mix('js/scripts.js')) }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
 
-	
-<script>
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-</script>
     @stack('after-scripts')
      @stack('afterscripts')
 	
   <script>
-	   $(document).ready(function() {
+   $(document).ready(function() {
+	   
+	      
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+
+	   
+		   
+		$(document).on("click", "[data-confirm-link]", function(event) {
+			var link = $(this).attr('data-confirm-link');
+			var title = $(this).attr('title');
+			bootbox.confirm({
+    			message: title + " - Are you sure you want to do this?",
+				backdrop: true,
+				buttons: {
+					confirm: {
+						label: '<i class="fal fa-check"></i> Yes',
+						className: 'pull-right btn-danger'
+					},
+					cancel: {
+						label: '<i class="fal fa-times"></i> Cancel',
+						className: 'pull-left btn-default'
+					}
+				},
+    			callback: function (result) {
+        			if(result){window.location.href=link;}
+    }
+});
+		});
 
 $(".animsition").animsition({
     inClass: 'fade-in',
