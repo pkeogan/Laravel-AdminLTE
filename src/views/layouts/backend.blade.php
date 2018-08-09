@@ -90,25 +90,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" integrity="sha256-u7MY6EG5ass8JhTuxBek18r5YG6pllB9zLqE4vZyTn4=" crossorigin="anonymous"></script>
  
 	{{ script(mix('js/scripts.js')) }}
-<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
 
-=======
-
-	
-<script>
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-</script>
->>>>>>> d4c38c3a4365cca01b0e82009de9d8542f1473d7
     @stack('after-scripts')
      @stack('afterscripts')
 	
   <script>
-<<<<<<< HEAD
    $(document).ready(function() {
 	   
 	      
@@ -141,9 +128,6 @@
     }
 });
 		});
-=======
-	   $(document).ready(function() {
->>>>>>> d4c38c3a4365cca01b0e82009de9d8542f1473d7
 
 $(".animsition").animsition({
     inClass: 'fade-in',
