@@ -31,13 +31,34 @@
    @stack('after-styles')
      @stack('afterstyles')
 		@include('adminlte::ga', ['code' => config('analytics.backend')])
+	
+	<style>
+	body {
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, 0.45)
+    ), url('{{asset('images/login-bg.jpg')}}') no-repeat center center fixed !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+		background-color: #000;
+		color: #fff !important;
+}
+		.login-logo-light {
+			color: #fff !important;
+		}
+	</style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 
 <body class="hold-transition login-page">
+
   <div class="login-box">
   <div class="login-logo">
-    <a href="{{ route('frontend.index')}}"><b>Hennepin</b> EMS</a>
+	  <img src="{{asset(config('adminlte.login.logo'))}}" class="center-block" alt="HEMS Patch">
+
+    <a href="{{ route('frontend.index')}}" class="login-logo-light"><b>Hennepin</b> EMS</a>
   </div>
   <!-- /.login-logo -->
     @include('adminlte::messages')
@@ -45,7 +66,7 @@
       </div>
   <!-- /.login-box-body -->
   </br>
-      <p class="login-box-msg"> PLASMA <a href="{{ config('plasma.link') }}">Verison {{ config('plasma.verison')}} </a></p>
+      <p class="login-box-msg"> PLASMA <a class="login-logo-light" href="{{ config('plasma.link') }}">Verison {{ config('plasma.verison')}} </a></p>
 </div>
 <!-- /.login-box -->
     
@@ -59,6 +80,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/datatables.min.js"></script>
   {{ script('js/scripts.js') }}
+		{{ script(asset('js/jquery.mask.js')) }}
+
 <script>
   $.ajaxSetup({
     headers: {
