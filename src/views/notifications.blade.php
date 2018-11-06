@@ -1,14 +1,34 @@
-<!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fal fa-bell"></i>
-              <span class="label label-warning">{{ Auth::user()->unreadNotifications->count() }}</span>
-            </a>
+<li class="dropdown messages-menu" id="notifcations-menu">
+	<a href="" class="dropdown-toggle" data-toggle="dropdown">
+		<i class="fal fa-bell"></i>
+		<span id="notifications-count" class="hidden label label-warning"></span>
+	</a>
+	<ul class="dropdown-menu">
+	  <li class="header" id="notifcations-header"><span id="notification-unread-amount"></span></li>
+	  <li>
+		<!-- inner menu: contains the actual data -->
+		<ul class="menu" id="notifcations-body">
+		  <li id='notification-loading-overlay'><a><h4 class="text-center" style="margin: 0px 0px 0px 0px;"><i class="far fa-sync fa-spin"></i></h4>
+			</a>
+		  </li>
+		</ul>
+	  </li>
+	  <li class="footer" id="notifcations-footer"><a>View all</a></li>
+	</ul>
+</li>
+
+
+
+
+			   @if(false)
             <ul class="dropdown-menu">
               <li class="header">You have {{ Auth::user()->unreadNotifications->count() }} notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+					
+					
+	
                   @foreach(Auth::user()->unreadNotifications->groupBy('type') as $note)
                  
                   
@@ -85,4 +105,4 @@
               </li>
               <li class="footer"><a href="{{ route('backend.profile.notifications') }}">View all</a></li>
             </ul>
-          </li>
+			  		@endif

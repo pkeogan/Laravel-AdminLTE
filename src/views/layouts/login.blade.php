@@ -61,7 +61,7 @@
   <div class="login-logo">
 	  <img src="{{asset(config('adminlte.login.logo'))}}" class="center-block" alt="HEMS Patch">
 
-    <a href="{{ route('frontend.index')}}" class="login-logo-light"><b>Hennepin</b> EMS</a>
+    <a href="{{ env('PUBLIC_SITE_URL', '') }}" class="login-logo-light"><b>Hennepin</b> EMS</a>
   </div>
   <!-- /.login-logo -->
     @include('adminlte::messages')

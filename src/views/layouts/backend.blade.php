@@ -1,3 +1,4 @@
+@include('alpacajs::imports')
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,29 +12,19 @@
   @includeif('vendor.laravel-favicon.favicon')
   @yield('meta')
 	
-  <title>@yield('title', config('adminlte.title'))</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/white/pace-theme-minimal.min.css" integrity="sha256-E35gzLnIxEQ1I4i28fiuAR/kqvLZLqcCqvpefyJqjZs=" crossorigin="anonymous" />  
+  <title>@yield('title', config('adminlte.title'))</title>	
 	@stack('styles')
-  {{ style('/css/style.css') }}
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+	{{ style(mix('css/style.css')) }}
+	{{ script(mix('js/scripts-header.js')) }}
 
-  <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    {{ style('/fontawesome-5.3.1/css/all.min.css') }}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css"/>
-
-     @stack('after-styles')
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css"/>
      @stack('afterstyles')
 @include('adminlte::ga', ['code' => config('analytics.backend')])
 	</head>
 <body class="hold-transition skin-hems sidebar-mini">
+<script>if(Cookies.get('sidebar-collapsed')==="true"){document.body.classList.add("sidebar-collapse");}</script>
 	
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -51,7 +42,7 @@
 		  
         <small>@yield('page-subtitle')</small>
       </h1>
-        @yield('breadcrumbs', view('adminlte::breadcrumbs'))
+       {{-- @yield('breadcrumbs', view('adminlte::breadcrumbs')) --}}
     </section>
   <!-- Main content -->
 <section class="content">
@@ -80,13 +71,14 @@
 		
     @stack('scripts')
 <!-- Import Scripts (build in webpack.min.js -->
-	
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
-	{{ script(mix('js/scripts.js')) }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
-		{{ script(asset('js/jquery.mask.js')) }}
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+         <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
+	    {{ script(mix('js/scripts.js')) }}
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
+
+	{{ script(asset('js/jquery.mask.js')) }}
     @stack('after-scripts')
      @stack('afterscripts')
 	
@@ -121,37 +113,14 @@
     			callback: function (result) {
         			if(result){window.location.href=link;}
     }
+	});
 });
-		});
-{{--
-$(".animsition").animsition({
-    inClass: 'fade-in',
-    outClass: 'fade-out',
-    inDuration: 1500,
-    outDuration: 800,
-    linkElement: 'a:not([target="_blank"]):not([href^="#"]):not([data-do-not-animate])',
-    // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
-    loading: true,
-    loadingParentElement: 'body', //animsition wrapper element
-    loadingClass: 'animsition-loading',
-    loadingInner: '', // e.g '<img src="loading.svg" />'
-    timeout: false,
-    timeoutCountdown: 5000,
-    onLoadEvent: true,
-    browser: [ 'animation-duration', '-webkit-animation-duration'],
-    // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
-    // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
-    overlay : false,
-    overlayClass : 'animsition-overlay-slide',
-    overlayParentElement : 'body',
-    transition: function(url){ window.location.href = url; }
-  });
-	   
-   --}}
        });
 	  
      $(document).ready(function() {
+		 $(document).pullNotifcations();
         @stack('scriptsdocumentready')
+		 
        });
   </script>
 

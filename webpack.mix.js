@@ -24,6 +24,7 @@
         'public/css/bootstrap.css',
         'resources/assets/adminlte/bower_components/font-awesome/css/font-awesome.css',
         'resources/assets/adminlte/bower_components/Ionicons/css/ionicons.css',
+	 	'resources/assets/css/pace-theme-minimal.min.css',
         'public/css/adminlte.css',
         'public/css/_all-skins.css',
         'resources/assets/adminlte/plugins/iCheck/square/blue.css'
