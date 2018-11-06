@@ -1,6 +1,7 @@
 {
   "name": "pkeogan/laravel-adminlte",
   "description": "A Package to Intergrate AdminLTE into Laravels 5.5 Blade Template System",
+  "version": "1.0",
   "keywords": [
     "laravel",
     "AdminLTE",
