@@ -69,8 +69,7 @@
       </div>
   <!-- /.login-box-body -->
   </br>
-      <p class="login-box-msg"> PLASMA <a class="login-logo-light" href="{{ config('plasma.link') }}">Verison {{ config('plasma.verison')}} </a></p>
-</div>
+  	<p class="login-box-msg"> PLASMA <a class="login-logo-light" href="{{ config('plasma.link') }}"> v{{ config('app.version')}} </a></p></div>
 <!-- /.login-box -->
     
  @stack('before-scripts')
