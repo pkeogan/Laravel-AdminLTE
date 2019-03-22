@@ -50,7 +50,7 @@
 
 @elseif (session()->get('flash_danger'))
 
-    @component('adminlte::alert', ['type' => 'danger', 'title' => 'Danger'])
+    @component('adminlte::alert', ['type' => 'danger', 'title' => 'Error'])
         @slot('message')
              @if(is_array(json_decode(session()->get('flash_danger'), true)))
                     {!! implode('', session()->get('flash_danger')->all(':message<br/>')) !!}
