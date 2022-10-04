@@ -1,1 +1,1 @@
-  <li {{ active_class(Active::checkUriPattern($uriPattern), 'class=active') }}><a href="@if(isset($link)){{ $link }}@endif"> @if(isset($text)){{ $text }}@endif</a></li>
+  <li {{ active_class(Active::checkUriPattern($uriPattern), 'class=active') }}><a href="@if(isset($link)){{ $link }}@endif"> @if(isset($text)){{ $text }}@endif @if(isset($label)) <span class="label @if(isset($labelColor)) {{$labelColor}} @else label-primary @endif pull-right">{{$label}}</span> @endif</a></li>

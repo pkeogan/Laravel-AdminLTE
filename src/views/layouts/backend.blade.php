@@ -21,7 +21,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css"/>
      @stack('afterstyles')
-@include('adminlte::ga', ['code' => config('analytics.backend')])
+
+    @livewireStyles
 	</head>
 <body class="hold-transition skin-hems sidebar-mini">
 <script>if(Cookies.get('sidebar-collapsed')==="true"){document.body.classList.add("sidebar-collapse");}</script>
@@ -37,15 +38,30 @@
 	
     <!-- Content Header (Page header) -->
     <section class="content-header">
+      
+      
       <h1>
         @yield('page-title')
 		  
         <small>@yield('page-subtitle')</small>
       </h1>
-       {{-- @yield('breadcrumbs', view('adminlte::breadcrumbs')) --}}
+       <ol class="breadcrumb">
+         <li class="active"  id="page-status"><span id="page-status-reason">Page was loaded at:</span> <span id="page-status-time" data-datetime="{{\Carbon\Carbon::now()->toIso8601String()}}"> {{ \Carbon\Carbon::now()->format('H:i') }}</span></li>
+      </ol>
     </section>
+      
+      
+      
   <!-- Main content -->
 <section class="content">
+  
+  @if( isset($_SERVER['HTTP_USER_AGENT']) &&  (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) || (strpos($_SERVER['HTTP_USER_AGENT'], 'Trident')))
+  <div class="callout callout-danger">
+                <h4>Internet Explorer Detected</h4>
+
+                <p>Internet Explorer is not a supported web browser. If you are using internet explorer on this website, you will have issues. Please use a modern web browser such as Microsoft Edge, Google Chrome, Firefox and Safari. Internet Explorer is an unsafe web browser that is no longer supported by Microsoft. If you continue to use Internet Explorer you will be unable to use features on this website. </p>
+              </div>
+  @endif
    @include('adminlte::messages')
 		@if(env('GLOBAL_MESSAGE', 'false') != 'false')
 	  <div class="alert alert-warning ">
@@ -62,30 +78,31 @@
   @include('backend.includes.footer')
   @include('backend.includes.aside')
 	  		  
-	 
+	 @include('adminlte::chat')
 </div>
 <!-- ./wrapper -->
+@livewireScripts
   @stack('before-scripts')
     @stack('beforescripts')
  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		
     @stack('scripts')
 <!-- Import Scripts (build in webpack.min.js -->
-         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
          <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
 	    {{ script(mix('js/scripts.js')) }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" integrity="sha256-4F7e4JsAJyLUdpP7Q8Sah866jCOhv72zU5E8lIRER4w=" crossorigin="anonymous"></script>
 
     @stack('after-scripts')
      @stack('afterscripts')
 	
   <script>
+    
    $(document).ready(function() {
-
      
    window.pageUUID = "{{ Webpatser\Uuid\Uuid::generate()->string }}";
+    window.authUserUUID = "{{ auth()->user()->uuid }}";
+   
 	      
 		$.ajaxSetup({
 			headers: {
@@ -98,32 +115,85 @@
 
 		   
 		$(document).on("click", "[data-confirm-link]", function(event) {
+      
 			var link = $(this).attr('data-confirm-link');
-			var title = $(this).attr('title');
-			bootbox.confirm({
-    			message: title + " - Are you sure you want to do this?",
-				backdrop: true,
-				buttons: {
-					confirm: {
-						label: '<i class="fal fa-check"></i> Yes',
-						className: 'pull-right btn-danger'
-					},
-					cancel: {
-						label: '<i class="fal fa-times"></i> Cancel',
-						className: 'pull-left btn-default'
-					}
-				},
-    			callback: function (result) {
-        			if(result){window.location.href=link;}
-    }
-	});
+      
+             if( $(this).attr('data-confirm-button-text') != null){
+         var confirmButtonText = $(this).attr('data-confirm-button-text');
+      } else {
+         var confirmButtonText = 'Yes I am sure';
+      }
+      
+      
+       if( $(this).attr('data-confirm-title') != null){
+         var confirmTitle = $(this).attr('data-confirm-title');
+      } else {
+         var confirmTitle = 'Are you sure?';
+      }
+      
+     
+     if( $(this).attr('data-confirm-text') != null){
+         var confirmText = $(this).attr('data-confirm-text');
+      } else {
+         var confirmText = 'You will not be able to revert this!';
+      }
+      
+      if( $(this).attr('data-confirm-type') != null){
+         var confirmType = $(this).attr('data-confirm-type');
+      } else {
+         var confirmType = 'warning';
+      }
+      
+      Swal({
+            title: confirmTitle,
+            text: confirmText,
+            type: confirmType,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: confirmButtonText
+          }).then((result) => {
+            if (result.value) {
+              window.location.href=link;
+            }
+          })
+      
+      
+      
+
 });
+     
+     
+     
+     
+     
+     //page status checker
+window.setInterval(function(){
+            if(!$().pageStatusUpdateTime()){
+              clearInterval()
+            }
+}, 10000);
        });
+    
+
+    
 	  
      $(document).ready(function() {
-		 $(document).pullNotifcations();
+       
+		 window.Echo.channel('user.'+window.authUserUUID)
+        .listen('.NotificationAdded', (e) => {
+              $().refreshNotifications();
+              $().playTheSounds();
+
+              favicon.badge(3);
+            
+        });
+
+       
         @stack('scriptsdocumentready')
-		 
+       
+       
+	 
        });
   </script>
 

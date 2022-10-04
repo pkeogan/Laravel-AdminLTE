@@ -30,7 +30,7 @@
 
   @stack('after-styles')
      @stack('afterstyles')
-		@include('adminlte::ga', ['code' => config('analytics.backend')])
+	
 </head>
 <body class="hold-transition skin-hems layout-top-nav">
 <!-- Site wrapper -->

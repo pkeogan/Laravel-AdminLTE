@@ -30,7 +30,7 @@
 
    @stack('after-styles')
      @stack('afterstyles')
-		@include('adminlte::ga', ['code' => config('analytics.backend')])
+
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 	

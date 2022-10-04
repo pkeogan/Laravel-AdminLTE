@@ -1,1 +1,1 @@
- <li class="header">{{ $text }}</li>
+ <li class="header" id="sidebar-header-{{ str_slug($text, '-') }}">{{ $text }}</li>
